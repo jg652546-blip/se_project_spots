@@ -1,11 +1,12 @@
 .card {
-  width: 413px;
+  max-width: 413px;
 }
 
 .card__image {
   height: 413px;
   width: 413px;
   object-fit: cover;
+  display: block;
 }
 
 .card__content {
