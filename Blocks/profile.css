@@ -21,10 +21,20 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__description {
   margin: 0 0 32px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__edit-btn {
@@ -53,10 +63,12 @@
   .profile__name {
     font-size: 20px;
     margin: 0 0 6px;
+    max-width: 288px;
   }
 
   .profile__description {
     margin: 0 0 32px;
+    max-width: 288px;
   }
 
   .profile__column {
@@ -65,6 +77,5 @@
 
   .profile__add-btn {
     margin: 0;
-    width: 100%;
   }
 }
