@@ -14,7 +14,8 @@ The Spots Project is a webpage for a simple social profile ion the style of a sm
 
 # Deployment
 
-This webpage is deployed to GitHub Pages.
+ [View the live project](https://jg52546-blip.github.io/se_project_spots/)
 
 # Project Pitch Video
-(https://1drv.ms/v/c/80f70839dc84f79c/EUQlCShbzX1Nrjr1KStLy2EBlNFEXzPQN2p2Ed4IqVAwDg?e=m7mR2E)
+
+[video](https://1drv.ms/v/c/80f70839dc84f79c/EUQlCShbzX1Nrjr1KStLy2EBlNFEXzPQN2p2Ed4IqVAwDg?e=m7mR2E)
