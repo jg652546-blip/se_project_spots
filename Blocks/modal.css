@@ -1,7 +1,7 @@
 /* TODO - add corerect font styles for everything */
 /* TODO - responsive design */
 
-.modol {
+.modal {
   visibility: hidden;
   background-color: #00000000;
   position: fixed;
@@ -14,11 +14,11 @@
   align-items: center;
 }
 
-.modol_is-opened {
+.modal_is-opened {
   visibility: visible;
 }
 
-.modol__container {
+.modal__container {
   max-width: 730px;
   width: 100%;
   border-radius: 8px;
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.modol__close-btn {
+.modal__close-btn {
   position: absolute;
   top: 32px;
   right: 50px;
@@ -36,30 +36,30 @@
   /* TODO - add close icon and make sure it looks right */
 }
 
-.modol__title {
+.modal__title {
   margin: 0 0 32px;
 }
 
-.modol__form {
+.modal__form {
   display: flex;
   flex-direction: column;
 }
 
-.modol__label {
+.modal__label {
   margin: 0 0 32px;
 }
 
-.modol__input {
+.modal__input {
   display: flex;
   margin: 8px 0 0;
   /* TODO - border, padding  */
 }
 
-.modol__input::placeholder {
+.modal__input::placeholder {
   color: #21212140;
 }
 
-.modol__submit-btn {
+.modal__submit-btn {
   max-width: 156px;
   /* TODO - remove max-width in media entry */
 }
