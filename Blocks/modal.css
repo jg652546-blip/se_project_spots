@@ -1,6 +1,5 @@
 /* TODO - add corerect font styles for everything */
 /* TODO - responsive design */
-
 .modal {
   visibility: hidden;
   background-color: #00000000;
@@ -33,7 +32,14 @@
   right: 50px;
   width: 40px;
   height: 40px;
-  /* TODO - add close icon and make sure it looks right */
+  background: url("close-icon.svg") center/contain no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  font-family: "Inter", "Roboto", sans-serif;
+  color: #212121;
 }
 
 .modal__title {
@@ -50,9 +56,15 @@
 }
 
 .modal__input {
-  display: flex;
-  margin: 8px 0 0;
-  /* TODO - border, padding  */
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #212121;
+  margin-top: 8px;
+  outline: none;
 }
 
 .modal__input::placeholder {
@@ -61,5 +73,19 @@
 
 .modal__submit-btn {
   max-width: 156px;
-  /* TODO - remove max-width in media entry */
+}
+
+@media (max-width: 600px) {
+  .modal__container {
+    padding: 24px;
+  }
+
+  .modal__close-btn {
+    top: 16px;
+    right: 16px;
+  }
+
+  .modal__submit-btn {
+    width: 100%;
+  }
 }
