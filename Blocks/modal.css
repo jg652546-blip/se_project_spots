@@ -1,5 +1,5 @@
 .modal {
-  visibility: hidden;
+  background: rgba(0, 0, 0, 0.5);
   background-color: #00000000;
   position: fixed;
   top: 0;
@@ -12,12 +12,14 @@
 }
 
 .modal_is-opened {
+  opacity: 1;
   visibility: visible;
 }
 
 .modal__container {
   max-width: 730px;
   width: 100%;
+  box-sizing: border-box;
   border-radius: 8px;
   background-color: #fff;
   padding: 32px 50px;
@@ -30,13 +32,21 @@
   right: 50px;
   width: 40px;
   height: 40px;
-  background: url("close-icon.svg") center/contain no-repeat;
+  background: url("./Images/images/close.svg") center/contain no-repeat;
   border: none;
   cursor: pointer;
 }
 
+.modal__close-btn:hover {
+  opacity: 0.6;
+}
+
 .modal__title {
   margin: 0 0 32px;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #000000;
 }
 
 .modal__form {
@@ -53,11 +63,8 @@
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   padding: 16px;
-  font-size: 16px;
-  line-height: 24px;
-  color: #212121;
-  margin-top: 8px;
-  outline: none;
+  font-size: 20px;
+  box-sizing: border-box;
 }
 
 .modal__input::placeholder {
@@ -66,19 +73,29 @@
 
 .modal__submit-btn {
   max-width: 156px;
+  background-color: #212121;
+  color: #fcf5e5;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__submit-btn:hover {
+  background-color: #1a1a1a;
 }
 
 @media (max-width: 600px) {
   .modal__container {
-    padding: 24px;
+    padding: 22px 12px 12px;
   }
 
   .modal__close-btn {
     top: 16px;
-    right: 16px;
+    right: 24px;
   }
 
-  .modal__submit-btn {
-    width: 100%;
+  .modal__input {
+    font-size: 16px;
   }
 }
