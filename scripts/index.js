@@ -38,7 +38,7 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 const profileNamel = document.querySelector(".profile__name");
 const profileDescriptionl = document.querySelector(".profile__description");
 
-editProfilebtn.addEventListener("click", function () {
+editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profilenamel.textContent;
   editProfileDescriptionInput.value = profiledescriptionl.textContent;
 
