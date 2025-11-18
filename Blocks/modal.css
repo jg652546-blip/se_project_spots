@@ -11,11 +11,12 @@
   align-items: center;
   visibility: hidden;
   opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease-in;
 }
 
 .modal_is-opened {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -34,7 +35,7 @@
   right: 50px;
   width: 40px;
   height: 40px;
-  background: url("./Images/images/close.svg") center/contain no-repeat;
+  background: url("./Images/images/Close") center/contain no-repeat;
   border: none;
   cursor: pointer;
 }
