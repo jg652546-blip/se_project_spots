@@ -11,6 +11,8 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s ease-in;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  padding: 0 10px;
 }
 
 .modal_is-opened {
@@ -89,8 +91,7 @@
 
 @media (max-width: 600px) {
   .modal__container {
-    margin: 20px;
-    width: calc(100% - 40px);
+    padding: 22px 12px 12px;
   }
 
   .modal__close-btn {
@@ -100,5 +101,9 @@
 
   .modal__input {
     font-size: 16px;
+  }
+
+  .modal__submit-btn {
+    max-width: 100%;
   }
 }
