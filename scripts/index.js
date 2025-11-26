@@ -58,6 +58,11 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  const cardLikebtnEl = cardElement.querySelector(".card__like-btn");
+  cardLikebtnEl.addEventListener("click", () => {
+    cardLikebtnEl.classList.toggle("card__like-button-active");
+  });
+
   return cardElement;
 }
 
@@ -112,7 +117,6 @@ function handleEditProfileSubmit(evt) {
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
   closeModal(editProfileModal);
-
 }
 
 initialCards.forEach(function (item) {
