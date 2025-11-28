@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -32,6 +36,7 @@ const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
+
 const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
@@ -43,6 +48,11 @@ const newPostClosebtn = newPostModal.querySelector(".modal__close-btn");
 const addCardFormElement = newPostModal.querySelector(".modal__form");
 const nameInput = newPostModal.querySelector("#card-description-input");
 const linkInput = newPostModal.querySelector("#card-image-input");
+
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -61,6 +71,18 @@ function getCardElement(data) {
   const cardLikebtnEl = cardElement.querySelector(".card__like-btn");
   cardLikebtnEl.addEventListener("click", () => {
     cardLikebtnEl.classList.toggle("card__like-button-active");
+  });
+
+  const cardDeletebtnEl = cardElement.querySelector(".card__delete-button");
+  cardDeletebtnEl.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    previewImageEl.src = data.link;
+    // TODO - set the other property values //
+    openModal(previewModal);
   });
 
   return cardElement;
@@ -87,6 +109,8 @@ function handleAddCardSubmit(evt) {
 
   newPostModal.classList.remove("modal_is-opened");
 }
+
+// TODO -set click listener//
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
