@@ -114,7 +114,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  closeModal(newPostModal);
+  closeModal(newPostModal); 
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
