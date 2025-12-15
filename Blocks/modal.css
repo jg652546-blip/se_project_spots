@@ -15,6 +15,22 @@
   padding: 0 10px;
 }
 
+.modal__button {
+  max-width: 156px;
+  background-color: #212121;
+  color: #fcf5e5;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__button_disabled {
+  background-color: #e5e5e5;
+  color: #000;
+  cursor: not-allowed;
+}
+
 .modal_type_preview {
   padding: 0 16px;
 }
@@ -75,6 +91,7 @@
 
 .modal__label {
   margin: 0 0 32px;
+  display: block;
 }
 
 .modal__input {
@@ -84,10 +101,20 @@
   padding: 16px;
   font-size: 20px;
   box-sizing: border-box;
+  margin: 8px 0 0;
 }
 
 .modal__input::placeholder {
   color: #21212140;
+}
+
+.modal__error {
+  min-height: 14px;
+  display: block;
+  margin-top: 8px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .modal__submit-btn {
@@ -102,6 +129,10 @@
 
 .modal__submit-btn:hover {
   background-color: #1a1a1a;
+}
+
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
 .modal__image-container {
@@ -123,6 +154,16 @@
   color: white;
   font-size: 14px;
   line-height: 1.2;
+}
+
+.modal__button_disabled {
+  background-color: #e5e5e5;
+  color: #000000;
+  cursor: not-allowed;
+}
+
+.modal__error_visible {
+  opacity: 1;
 }
 
 @media (max-width: 480px) {
