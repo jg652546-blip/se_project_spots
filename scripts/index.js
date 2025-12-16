@@ -48,7 +48,7 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const cardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 
 const addCardFormElement = newPostModal.querySelector(".modal__form");
-const nameInput = newPostModal.querySelector("#card-description-input");
+const descriptionInput = newPostModal.querySelector("#card-description-input");
 const linkInput = newPostModal.querySelector("#card-image-input");
 
 const previewModal = document.querySelector("#preview-modal");
@@ -105,12 +105,20 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closeModal(modal);
+    }
+  });
+});
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   disableSubmitButton(cardSubmitBtn, settings);
 
   const inputValues = {
-    name: nameInput.value,
+    name: descriptionInput.value,
     link: linkInput.value,
   };
 
@@ -142,7 +150,7 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
-  resetValidation(addCardFormElement, [nameInput, linkInput], settings);
+  resetValidation(addCardFormElement, [descriptionInput, linkInput], settings);
   openModal(newPostModal);
 });
 
