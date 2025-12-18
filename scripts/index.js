@@ -115,7 +115,6 @@ document.querySelectorAll(".modal").forEach((modal) => {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  disableSubmitButton(cardSubmitBtn, settings);
 
   const inputValues = {
     name: descriptionInput.value,
