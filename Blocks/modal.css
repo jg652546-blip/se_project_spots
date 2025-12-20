@@ -71,11 +71,18 @@
 .modal__close-btn_type_preview {
   background-image: url("../Images/images/close.svg");
   filter: brightness(0) invert(1);
-  top: 0;
-  right: -52.5px;
+  position: relative;
+  top: -40px;
+  right: -40px;
+  max-width: 282px;
+  width: 100%;
+  padding: 0;
 }
 
 .modal__close-btn_type_preview:hover {
+  position: absolute;
+  top: -36px;
+  right: 0;
   opacity: 0.6;
 }
 
@@ -141,7 +148,16 @@
 
 .modal__input_type_error {
   border: 1px solid rgba(255, 0, 0, 0.6);
-   border-color: #ff0000;
+  border-color: #ff0000;
+}
+
+.modal__image {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .modal__image-container {
@@ -167,6 +183,13 @@
 .modal__error_visible {
   opacity: 1;
   display: block;
+}
+
+@media screen and (max-width: 320px) {
+  .modal_type_preview .modal__container {
+    max-width: 282px; /* Same as card width */
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 480px) {
