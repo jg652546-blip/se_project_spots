@@ -1,1 +1,4 @@
+node nodules/
+dist/
+
 .DS_Store
