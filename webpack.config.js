@@ -34,6 +34,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+        type: "javascript/auto",
       },
       {
         test: /\.css$/,
