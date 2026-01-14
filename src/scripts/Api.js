@@ -1,71 +1,68 @@
-export default class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
-  }
+const apiConfig = {
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "Bearer a85181f4-7f5a-4b54-8e47-0c62895ccae9",
+    "Content-Type": "application/json",
+  },
+};
 
-  _handleResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
+const handleResponse = (res) => {
+  if (res.ok) {
+    return res.json();
   }
+  return Promise.reject(`Error: ${res.status}`);
+};
 
-  _request(path, options = {}) {
-    return fetch(`${this._baseUrl}${path}`, {
-      headers: this._headers,
-      ...options,
-    }).then((res) => this._handleResponse(res));
-  }
+const request = (path, options = {}) => {
+  return fetch(`${apiConfig.baseUrl}${path}`, {
+    headers: apiConfig.headers,
+    ...options,
+  }).then(handleResponse);
+};
 
-  getUserInfo() {
-    return this._request("/users/me");
-  }
+export const getUserInfo = () => {
+  return request("/users/me");
+};
 
-  getInitialCards() {
-    return this._request("/cards");
-  }
+export const getInitialCards = () => {
+  return request("/cards");
+};
 
-  getAppInfo() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
-  }
+export const updateProfile = ({ name, about }) => {
+  return request("/users/me", {
+    method: "PATCH",
+    body: JSON.stringify({ name, about }),
+  });
+};
 
-  editUserInfo({ name, about }) {
-    return this._request("/users/me", {
-      method: "PATCH",
-      body: JSON.stringify({ name, about }),
-    });
-  }
+export const addCard = ({ name, link }) => {
+  return request("/cards", {
+    method: "POST",
+    body: JSON.stringify({ name, link }),
+  });
+};
 
-  updateAvatar(avatar) {
-    return this._request("/users/me/avatar", {
-      method: "PATCH",
-      body: JSON.stringify({ avatar }),
-    });
-  }
+export const removeCard = (cardId) => {
+  return request(`/cards/${cardId}`, {
+    method: "DELETE",
+  });
+};
 
-  addCard({ name, link }) {
-    return this._request("/cards", {
-      method: "POST",
-      body: JSON.stringify({ name, link }),
-    });
-  }
+export const addLike = (cardId) => {
+  return request(`/cards/${cardId}/likes`, {
+    method: "PUT",
+  });
+};
 
-  deleteCard(cardId) {
-    return this._request(`/cards/${cardId}`, {
-      method: "DELETE",
-    });
-  }
+export const removeLike = (cardId) => {
+  return request(`/cards/${cardId}/likes`, {
+    method: "DELETE",
+  });
+};
 
-  addLike(cardId) {
-    return this._request(`/cards/${cardId}/likes`, {
-      method: "PUT",
-    });
-  }
-
-  removeLike(cardId) {
-    return this._request(`/cards/${cardId}/likes`, {
-      method: "DELETE",
-    });
-  }
-}
+export const updateAvatar = ({ avatar }) => {
+  return request("/users/me/avatar", {
+    method: "PATCH",
+    body: JSON.stringify({ avatar }),
+  });
+};

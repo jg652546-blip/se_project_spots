@@ -1,4 +1,4 @@
-export const validationConfig = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
@@ -77,5 +77,4 @@ export const enableValidation = (config) => {
   });
 };
 
-export const settings = validationConfig;
 export { resetValidation };
