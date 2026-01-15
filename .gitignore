@@ -1,4 +1,4 @@
-node nodules/
+node_modules/
 dist/
 
 .DS_Store
