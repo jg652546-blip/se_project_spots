@@ -1,3 +1,5 @@
+import { config } from "webpack";
+
 export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",

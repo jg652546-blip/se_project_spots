@@ -242,66 +242,16 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-profileAvatarBtn.addEventListener("click", () => {
-  avatarForm.reset();
-  resetValidation(avatarForm, [avatarLinkInput], settings);
-  openModal(avatarModal);
-});
-
-avatarModalCloseBtn.addEventListener("click", () => {
-  closeModal(avatarModal);
-});
-
-deleteCardCloseBtn.addEventListener("click", () => {
-  closeModal(deleteCardModal);
-});
-
-function handleAvatarSubmit(evt) {
-  evt.preventDefault();
-  renderLoading(true, avatarSubmitBtn, "Save", "Saving...");
-  updateAvatar({ avatar: avatarLinkInput.value })
-    .then((userData) => {
-      profileAvatarEl.src = userData.avatar;
-      profileAvatarEl.alt = userData.name;
-      closeModal(avatarModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      renderLoading(false, avatarSubmitBtn, "Save", "Saving...");
-    });
-}
-
-avatarForm.addEventListener("submit", handleAvatarSubmit);
-
-function handleDeleteSubmit(evt) {
-  evt.preventDefault();
-  renderLoading(true, deleteCardSubmitBtn, "Yes", "Deleting...");
-  removeCard(selectedCardId)
-    .then(() => {
-      selectedCard.remove();
-      closeModal(deleteCardModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      renderLoading(false, deleteCardSubmitBtn, "Yes", "Deleting...");
-    });
-}
-
-deleteCardForm.addEventListener("submit", handleDeleteSubmit);
-
-enableValidation(settings);
-
-Promise.all([getUserInfo(), getInitialCards()])
+api
+  .getAppInfo()
   .then(([userData, cards]) => {
-    currentUserId = userData._id;
-    profileNameEl.textContent = userData.name;
-    profileDescriptionEl.textContent = userData.about;
-    profileAvatarEl.src = userData.avatar;
-    profileAvatarEl.alt = userData.name;
-
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
+    setProfileInfo(userData);
+    cards.forEach((card) => {
+      renderCard(card);
     });
   })
-  .catch(console.error);
+  .catch((err) => {
+    console.error(err);
+  });
+
+enableValidation(settings);
