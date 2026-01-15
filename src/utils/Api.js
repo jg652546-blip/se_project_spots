@@ -1,3 +1,13 @@
+import Api from "../src/utils/Api.js";
+
+const api = new Api({
+  baseUrl: "https://your-api-domain.com",
+  headers: {
+    authorization: "Bearer e6901410-3d75-4af8-b4ef-d40a6d42ccdd",
+    "Content-Type": "application/json",
+  },
+});
+
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
