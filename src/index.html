@@ -16,18 +16,11 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <div class="profile__avatar-container">
-            <img
-              src="./images/avatar.jpg"
-              alt="Bessie Coleman"
-              class="profile__avatar"
-            />
-            <button
-              type="button"
-              class="profile__avatar-button"
-              aria-label="Edit profile picture"
-            ></button>
-          </div>
+          <img
+            src="./images/avatar.jpg"
+            alt="Bessie Coleman"
+            class="profile__avatar"
+          />
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -109,33 +102,6 @@
         </div>
       </div>
     </div>
-    <div class="modal" id="edit-avatar-modal">
-      <div class="modal__container">
-        <button
-          type="button"
-          class="modal__close-btn"
-          aria-label="Close modal"
-        ></button>
-        <h2 class="modal__title">Change profile picture</h2>
-        <form class="modal__form">
-          <label for="avatar-link-input" class="modal__label">
-            Image link
-            <input
-              id="avatar-link-input"
-              type="url"
-              class="modal__input"
-              placeholder="Place a link to the picture"
-              required
-              aria-describedby="avatar-link-input-error"
-            />
-            <span id="avatar-link-input-error" class="modal__error"></span>
-          </label>
-          <button type="submit" class="modal__submit-btn modal__button">
-            Save
-          </button>
-        </form>
-      </div>
-    </div>
     <div class="modal" id="new-post-modal">
       <div class="modal__container">
         <button
@@ -169,49 +135,6 @@
               required
             />
             <span id="card-description-input-error" class="modal__error"></span>
-          </label>
-          <button type="submit" class="modal__submit-btn modal__button">
-            Save
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="modal" id="delete-card-modal">
-      <div class="modal__container modal__container_type_confirm">
-        <button
-          type="button"
-          class="modal__close-btn"
-          aria-label="Close modal"
-        ></button>
-        <h2 class="modal__title">Delete card</h2>
-        <form class="modal__form" id="delete-card-form">
-          <button type="submit" class="modal__submit-btn modal__button">
-            Yes
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="modal" id="avatar-modal">
-      <div class="modal__container">
-        <button
-          type="button"
-          class="modal__close-btn"
-          aria-label="Close modal"
-        ></button>
-        <h2 class="modal__title">Change profile picture</h2>
-        <form class="modal__form">
-          <label for="avatar-link-input" class="modal__label">
-            Image link
-            <input
-              id="avatar-link-input"
-              type="url"
-              class="modal__input"
-              name="avatar"
-              placeholder="Place a link to the image"
-              required
-              aria-describedby="avatar-link-input-error"
-            />
-            <span id="avatar-link-input-error" class="modal__error"></span>
           </label>
           <button type="submit" class="modal__submit-btn modal__button">
             Save
