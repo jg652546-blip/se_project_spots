@@ -1,6 +1,4 @@
-import { config } from "webpack";
-
-export const settings = {
+export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
@@ -79,4 +77,5 @@ export const enableValidation = (config) => {
   });
 };
 
-export { resetValidation };
+enableValidation(settings);
+export { resetValidation, settings };
