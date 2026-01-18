@@ -180,3 +180,5 @@ api
   .catch((err) => {
     console.error(err);
   });
+
+  enableValidation(settings);
