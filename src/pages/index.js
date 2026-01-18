@@ -1,5 +1,6 @@
 import "./index.css";
 import { enableValidation, settings } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
   {
@@ -70,6 +71,14 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1/YOUR_ID",
+  headers: {
+    authorization: "a59d0436-cb47-46a9-86cf-8bac31dcde14",
+    "Content-Type": "application/json",
+  },
+});
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -146,6 +155,15 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
+api.getUserInfo()
+  .then((userData) => {
+    profileNameEl.textContent = userData.name;
+    profileDescriptionEl.textContent = userData.about;
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 editProfileBtn.addEventListener("click", function () {
   resetValidation(
     editProfileForm,
@@ -180,7 +198,13 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
+api.getInitialCards()
+  .then((cards) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
