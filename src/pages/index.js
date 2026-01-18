@@ -2,47 +2,16 @@ import "./index.css";
 import { enableValidation, settings } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
+  "#profile-name-input",
 );
 
 const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 
 const newPostBtn = document.querySelector(".profile__add-btn");
@@ -73,7 +42,8 @@ const cardTemplate = document
 const cardsList = document.querySelector(".cards__list");
 
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1/YOUR_ID",
+  baseUrl:
+    "https://around-api.en.tripleten-services.com/v1/469b4bea781e9fb77cddeacb",
   headers: {
     authorization: "a59d0436-cb47-46a9-86cf-8bac31dcde14",
     "Content-Type": "application/json",
@@ -155,7 +125,8 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
-api.getUserInfo()
+api
+  .getUserInfo()
   .then((userData) => {
     profileNameEl.textContent = userData.name;
     profileDescriptionEl.textContent = userData.about;
@@ -168,7 +139,7 @@ editProfileBtn.addEventListener("click", function () {
   resetValidation(
     editProfileForm,
     [editProfileNameInput, editProfileDescriptionInput],
-    settings
+    settings,
   );
 
   editProfileNameInput.value = profileNameEl.textContent;
@@ -198,7 +169,8 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-api.getInitialCards()
+api
+  .getInitialCards()
   .then((cards) => {
     cards.forEach((item) => {
       const cardElement = getCardElement(item);
