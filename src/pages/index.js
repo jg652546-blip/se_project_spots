@@ -61,12 +61,25 @@ function getCardElement(data) {
 
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
   cardLikeBtnEl.addEventListener("click", () => {
-    cardLikeBtnEl.classList.toggle("card__like-button-active");
+    const isLiked = cardLikeBtnEl.classList.contains(
+      "card__like-button-active",
+    );
+
+    const request = isLiked ? api.unlikeCard(data._id) : api.likeCard(data._id);
+
+    request
+      .then(() => {
+        cardLikeBtnEl.classList.toggle("card__like-button-active");
+      })
+      .catch(console.error);
   });
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
+    api
+      .deleteCard(data._id)
+      .then(() => cardElement.remove())
+      .catch(console.error);
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -109,31 +122,23 @@ document.querySelectorAll(".modal").forEach((modal) => {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  const inputValues = {
-    name: descriptionInput.value,
-    link: linkInput.value,
-  };
-
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
-  addCardFormElement.reset();
-  closeModal(newPostModal);
+  api
+    .addCard({
+      name: descriptionInput.value,
+      link: linkInput.value,
+    })
+    .then((card) => {
+      cardsList.prepend(getCardElement(card));
+      addCardFormElement.reset();
+      closeModal(newPostModal);
+    })
+    .catch(console.error);
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
-api
-  .getUserInfo()
-  .then((userData) => {
-    profileNameEl.textContent = userData.name;
-    profileDescriptionEl.textContent = userData.about;
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 editProfileBtn.addEventListener("click", function () {
   resetValidation(
@@ -162,23 +167,20 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
+
+  api
+    .setUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((userData) => {
+      profileNameEl.textContent = userData.name;
+      profileDescriptionEl.textContent = userData.about;
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-  enableValidation(settings);
+enableValidation(settings);
