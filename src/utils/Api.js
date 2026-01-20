@@ -13,7 +13,7 @@ api.getInitialData()
     console.log(userData, cards);
   })
   .catch(console.error);
-
+  
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
