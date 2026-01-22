@@ -82,8 +82,10 @@ function getCardElement(data) {
 
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
   cardLikeBtnEl.addEventListener("click", () => {
-    const likeAction = isCardLiked(data) ? api.removeLike : api.addLike;
-    likeAction(data._id)
+    const likeAction = isCardLiked(data)
+      ? api.removeLike(data._id)
+      : api.addLike(data._id);
+    likeAction
       .then((updatedCard) => {
         data.likes = updatedCard.likes;
         updateLikeButton(data, cardLikeBtnEl);
