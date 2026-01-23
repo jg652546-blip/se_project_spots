@@ -190,7 +190,7 @@
 
 @media screen and (max-width: 320px) {
   .modal_type_preview .modal__container {
-    max-width: 282px; /* Same as card width */
+    max-width: 282px;
     margin: 0 auto;
   }
 }

@@ -1,5 +1,5 @@
 import "./index.css";
-import Api from "../scripts/Api.js";
+import Api from "../scripts/api.js";
 import {
   enableValidation,
   resetValidation,
