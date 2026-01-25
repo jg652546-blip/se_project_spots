@@ -1,4 +1,9 @@
-import { enableValidation, settings } from "../scripts/validation.js";
+import "./index.css";
+import {
+  enableValidation,
+  resetValidation,
+  settings,
+} from "../scripts/validation.js";
 enableValidation(settings);
 
 const initialCards = [
@@ -37,11 +42,11 @@ const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
+  "#profile-name-input",
 );
 
 const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 
 const newPostBtn = document.querySelector(".profile__add-btn");
@@ -150,7 +155,7 @@ editProfileBtn.addEventListener("click", function () {
   resetValidation(
     editProfileForm,
     [editProfileNameInput, editProfileDescriptionInput],
-    settings
+    settings,
   );
 
   editProfileNameInput.value = profileNameEl.textContent;
@@ -164,6 +169,9 @@ editProfileCloseBtn.addEventListener("click", function () {
 
 newPostBtn.addEventListener("click", function () {
   resetValidation(addCardFormElement, [descriptionInput, linkInput], settings);
+  if (editProfileModal.classList.contains("modal_is-opened")) {
+    closeModal(editProfileModal);
+  }
   openModal(newPostModal);
 });
 
