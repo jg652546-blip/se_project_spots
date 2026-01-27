@@ -6,12 +6,37 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
-.profile__avatar {
+.profile__avatar-container {
+  position: relative;
   height: 190px;
   width: 190px;
   margin-right: 20px;
   border-radius: 8px;
+  overflow: hidden;
+}
+
+.profile__avatar {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
   object-fit: cover;
+  display: block;
+}
+
+.profile__avatar-edit-btn {
+  position: absolute;
+  inset: 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4) url("../Images/images/pencil.svg") center/24px
+    24px no-repeat;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-btn {
+  opacity: 1;
 }
 
 .profile__column {
@@ -94,7 +119,7 @@
     padding-top: 20px;
   }
 
-  .profile__avatar {
+  .profile__avatar-container {
     margin: 0 0 12px;
     height: 80px;
     width: 80px;

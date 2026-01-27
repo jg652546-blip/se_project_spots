@@ -24,11 +24,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./Images/images/avatar.jpg') %>"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="<%= require('./Images/images/avatar.jpg') %>"
+              alt="Bessie Coleman"
+              class="profile__avatar"
+            />
+            <button
+              type="button"
+              class="profile__avatar-edit-btn"
+              aria-label="Edit avatar"
+            ></button>
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -115,6 +122,33 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="edit-avatar-modal" novalidate>
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close-btn"
+          aria-label="Close modal"
+        ></button>
+        <h2 class="modal__title">Edit avatar</h2>
+        <form class="modal__form">
+          <label for="profile-avatar-input" class="modal__label">
+            Avatar URL
+            <input
+              id="profile-avatar-input"
+              type="url"
+              class="modal__input"
+              placeholder="Enter avatar link"
+              required
+              aria-describedby="profile-avatar-input-error"
+            />
+            <span id="profile-avatar-input-error" class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-btn modal__button">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
     <div class="modal" id="new-post-modal">
       <div class="modal__container">
         <button
@@ -155,7 +189,6 @@
         </form>
       </div>
     </div>
-
     <div class="modal modal_type_preview" id="preview-modal">
       <div class="modal__image-container">
         <button

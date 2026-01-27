@@ -1,26 +1,69 @@
-const config = {
-  baseUrl: "https://around.nomoreparties.co/v1/web_es_10",
-  headers: {
-    authorization: "1f1b89d8-451a-4f2a-8ee6-17d0b5d1e3a3",
-    "Content-Type": "application/json",
-  },
-};
-
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
+class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
-  return Promise.reject(`Error: ${res.status}`);
-};
 
-const request = (url, options) => {
-  return fetch(url, options).then(handleResponse);
-};
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
 
-const getInitialCards = () => {
-  return request(`${config.baseUrl}/cards`, {
-    headers: config.headers,
-  });
-};
+  _request(path, options = {}) {
+    return fetch(`${this._baseUrl}${path}`, {
+      headers: this._headers,
+      ...options,
+    }).then(this._handleResponse);
+  }
 
-export { getInitialCards };
+  getUserInfo() {
+    return this._request("/users/me");
+  }
+
+  getInitialCards() {
+    return this._request("/cards");
+  }
+
+  updateUserInfo({ name, about }) {
+    return this._request("/users/me", {
+      method: "PATCH",
+      body: JSON.stringify({ name, about }),
+    });
+  }
+
+  addCard({ name, link }) {
+    return this._request("/cards", {
+      method: "POST",
+      body: JSON.stringify({ name, link }),
+    });
+  }
+
+  deleteCard(cardId) {
+    return this._request(`/cards/${cardId}`, {
+      method: "DELETE",
+    });
+  }
+
+  addLike(cardId) {
+    return this._request(`/cards/${cardId}/likes`, {
+      method: "PUT",
+    });
+  }
+
+  removeLike(cardId) {
+    return this._request(`/cards/${cardId}/likes`, {
+      method: "DELETE",
+    });
+  }
+
+  updateAvatar({ avatar }) {
+    return this._request("/users/me/avatar", {
+      method: "PATCH",
+      body: JSON.stringify({ avatar }),
+    });
+  }
+}
+
+export default Api;
